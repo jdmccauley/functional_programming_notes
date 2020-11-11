@@ -1,0 +1,67 @@
+Lambda Calculus:
+Watching this video: Lambda Calculus - Computerphile
+Lambda Calculus was made by Alonzo Church, a mathmetician from Princeton.
+	• He was interested in, "what is a function, from a computational perspective?"
+	• His answer was Lambda Calculus
+	• Interestingly, he was the PhD advisor for Alan Turing
+		○ This is important because Turing's Turing Machine was an explanation of a 'state-based' model of computation
+		○ So Church's Lambda Calculus is a functional model of computation, while the Turing Machine is a state-based model of computation
+			§ Essentually functions vs objects or functional vs state-based computation
+	• For Church, a function is a 'black box' that has its contents hidden from a user
+		○ The 'black box' takes inputs, processes them in some unknown way, and produces an output as a result of that processing
+	Example:
+		X -> function -> X + 1
+	This function, in some way, takes X, and outputs the value of X + 1
+	Another example:
+		X -> function -> X + Y
+		Y
+	This function, in some way, takes X and Y, and outputs the value of X + Y
+	• The important things to note for these functions are:
+		○ The method of computation is not known, and does not need to be known
+		○ No internal state for the function
+			§ No changes to the state of the input variables
+			§ No hidden values that can be taken out of the function
+	• The syntax for lambda functions is very standard:
+	λx. x+1
+	The λ denotes that this is a lambda function
+	The x. notes that 'x' is an input variable
+	The x+1 notes that the output for the function is 'x+1'.
+	Example: the X + Y from above
+	λx. λy. x+y
+	This notes that x and y are input to a lambda function, and the output is 'x+y'.
+	
+	Example of use:
+	(λx. x+1) 5 -> Output is 6
+	
+	• Reasons for using lambda calculus:
+		○ Can encode any computation, regardless of the programming language
+		○ It is the basis for functional programming
+			§ Haskell (the language) essentially compiles to lambda expressions
+		○ Lambda Calculus is present in most programming languages
+			§ Wasn't necessarily true about 10 years ago, but now they mostly all do
+			§ This is great, since you can quickly translate a lambda function between most languages without knowing much about the language
+				□ Similar to how regular expression is available in most programming languages for string processing
+				□ Maybe it's helpful to think of lambda calculus for functions as regex for strings
+		○ It doesn't note data types
+			§ Lambda functions work independent of data types of variables in a language
+	• The downside of using lambda functions is that if data types are desired, they must be encoded, such as Booleans
+	Boolean Example:
+	If we break down Booleans, they are a choice between two values, 'True' and 'False'.
+	We can simulate this for values x and y, where a function can either return x (True) or y (false)
+	
+	(λx. λy. x) for True
+	(λx. λy. y) for False
+	These lambda expressions can work as True/False.
+	
+	As a test, let's encode 'NOT', which flips a Boolean value.
+	NOT = (λb. b FALSE TRUE), where the FALSE and TRUE are equal to the expressions above
+	Expanded: 
+		NOT = (λb. b (λx. λy. y) (λx. λy. x))
+	Now for inputting TRUE:
+		((λx. λy. x) (λx. λy. y) (λx. λy. x))
+		TRUE turns to FALSE
+		
+	• Recursion with the Y Combinator
+		○ Recursion can be done with Lambda Calculus using the famous Y Combinatior expression:
+		Y = λf. (λx. f(xx)) (λx. f(xx))
+		○ This was actually made by Haskell Curry (the inspiration for the Haskell language)
