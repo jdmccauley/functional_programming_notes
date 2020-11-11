@@ -1,0 +1,22 @@
+Lambda Calculus in Python:
+Now that I understand the use of lambda calculus, time to understand its syntax in python.
+Syntax:
+	my_func = lambda a : a + 1
+	my_func2 = lambda a,b : a + b
+It's pretty simple, just the λ is  changed to 'lambda', only one 'lambda' is needed for multiple input variables, and the output is encoded after a colon.
+
+Use:
+	x_plus_1 = my_func(5)
+	#Returns 6
+	x_plus_y = my_func2(5, 1)
+	#Returns 6
+
+For pandas dataframes, you can modify a dataframe in place without making a separate lambda function. You can do this using df.apply()
+
+Example:
+	df.apply(
+		lambda column: column + 5
+		axis = 1
+	)
+This performs the lamdba function on the dataframe column.
+Note that when 'axis = 1', the function is performed on columns, while when 'axis = 0', the function is performed on rows.
